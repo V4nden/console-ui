@@ -1,0 +1,26 @@
+.select {
+  background-color: black;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0.5rem;
+  position: relative;
+}
+
+.selected-option {
+  padding: 0.5rem;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.options {
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, 0);
+}
+
+.option {
+  padding: 0.5rem;
+  background-color: black;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.75);
+}

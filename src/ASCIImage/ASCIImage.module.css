@@ -1,5 +1,8 @@
 .img-block {
   position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   margin: 0.5rem;
   border-width: 1px;
   text-align: center;

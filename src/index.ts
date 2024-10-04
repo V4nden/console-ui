@@ -6,3 +6,4 @@ export * from "./Input/Input";
 export * from "./Loader/Loader";
 export * from "./Slider/Slider";
 export * from "./Text/Text";
+export * from "./Select/Select";

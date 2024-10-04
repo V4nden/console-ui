@@ -67,7 +67,7 @@ export const ASCIImage = (props: Props) => {
       </div>
       <div
         style={{
-          lineHeight: (props.size ? props.size / 2 : "0.5") + "vw",
+          lineHeight: (props.size ? props.size / 1.6 : "0.5") + "vw",
           fontSize: (props.size ? props.size : "1") + "vw",
         }}
         className={styles["img-display-wrapper"]}
