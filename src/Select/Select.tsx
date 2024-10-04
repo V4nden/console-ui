@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import { useState } from "react";
 import styles from "./Select.module.css";
 type Option = { value: string; title: string };
 type Props = {

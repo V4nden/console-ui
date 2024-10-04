@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { HTMLProps, useEffect, useState } from "react";
+import { HTMLProps, useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import styles from "./Text.module.css";
 

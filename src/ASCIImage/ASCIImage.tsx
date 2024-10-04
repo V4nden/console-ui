@@ -20,8 +20,8 @@ export const ASCIImage = (props: Props) => {
   const gradient = `                            .-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@`;
   useEffect(() => {
     const img = new Image();
-    img.crossOrigin = "anonymous"; // Handle CORS if needed
-    img.src = props.src; // Specify your image path
+    img.crossOrigin = "anonymous";
+    img.src = props.src;
 
     img.onload = () => {
       const canvas = document.createElement("canvas");

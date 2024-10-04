@@ -44,10 +44,10 @@ export const Slider = (props: Props) => {
       className={styles["slider"]}
       style={{ fontSize: props.size + "px" }}
       ref={ref}
-      onMouseDown={(e) => {
+      onMouseDown={() => {
         setPressed(true);
       }}
-      onMouseUp={(e) => {
+      onMouseUp={() => {
         setPressed(false);
       }}
       onMouseMove={(e) => {

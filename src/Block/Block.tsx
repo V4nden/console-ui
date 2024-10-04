@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { HTMLProps, ReactNode } from "react";
+import { HTMLProps, ReactNode } from "react";
 import styles from "./Block.module.css";
 interface Props extends HTMLProps<HTMLDivElement> {
   title: string;
