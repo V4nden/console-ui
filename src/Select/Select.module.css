@@ -1,14 +1,17 @@
+@import "../index.module.css";
+
 .select {
   background-color: black;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--white);
   margin: 0.5rem;
   position: relative;
 }
 
 .selected-option {
   padding: 0.5rem;
-  border-width: 1px;
-  border-color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .options {
@@ -21,6 +24,4 @@
 .option {
   padding: 0.5rem;
   background-color: black;
-  border-width: 1px;
-  border-color: rgba(255, 255, 255, 0.75);
 }

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Loader } from "../Loader/Loader";
 import styles from "./ASCIImage.module.css";
+import indexstyles from "../index.module.css";
+import classNames from "classnames";
+
 type Props = {
   src: string;
   width: number;
@@ -61,7 +64,7 @@ export const ASCIImage = (props: Props) => {
   }, []);
 
   return (
-    <div className={styles["img-block"]}>
+    <div className={classNames(styles["img-block"], indexstyles["border"])}>
       <div className={styles["img-loading"]}>
         {!loaded && <Loader type="braile" />}
       </div>

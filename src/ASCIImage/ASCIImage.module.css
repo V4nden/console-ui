@@ -1,14 +1,12 @@
+@import "../index.module.css";
+
 .img-block {
   position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   margin: 0.5rem;
-  border-width: 1px;
   text-align: center;
-  border-radius: 0;
-  border-width: 1px;
-  border-color: rgba(255, 255, 255, 0.75);
 }
 
 .img-loading {
@@ -25,5 +23,5 @@
 .img-alt {
   font-size: 0.75rem;
   line-height: 1rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--white);
 }

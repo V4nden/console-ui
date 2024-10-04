@@ -21,7 +21,7 @@ export const Button = (props: Props) => {
     <button
       {...props}
       className={classNames(
-        "m-2",
+        styles["button"],
         props.options && props.options.type
           ? types[props.options.type]
           : types["primary"],

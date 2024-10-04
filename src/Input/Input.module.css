@@ -1,3 +1,5 @@
+@import "../index.module.css";
+
 .input-container {
   display: flex;
   align-items: center;
@@ -8,5 +10,8 @@
   margin: 0.5rem;
   flex: 1 1 0%;
   outline-style: none;
+  border: none;
+  color: var(--white);
+  font-family: monospace;
   background-color: transparent;
 }

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styles from "./Select.module.css";
+import indexstyles from "../index.module.css";
+import classNames from "classnames";
 type Option = { value: string; title: string };
 type Props = {
   options: Option[];
@@ -17,15 +19,18 @@ export const Select = (props: Props) => {
         setOpened(!opened);
       }}
     >
-      <div className={styles["selected-option"]}>
-        {props.options[selected].title + "   " + (opened ? "Λ" : "V")}
+      <div
+        className={classNames(styles["selected-option"], indexstyles["border"])}
+      >
+        <span>{props.options[selected].title}</span>{" "}
+        <span>{opened ? "Λ" : "V"}</span>
       </div>
       {opened && (
         <div className={styles["options"]}>
           {props.options.map((el, index) => {
             return (
               <div
-                className={styles["option"]}
+                className={classNames(styles["option"], indexstyles["border"])}
                 key={index}
                 onClick={() => {
                   setSelected(index);
