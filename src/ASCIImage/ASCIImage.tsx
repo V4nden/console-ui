@@ -10,6 +10,7 @@ type Props = {
   height: number;
   size?: number;
   alt?: string;
+  darker?: number;
 };
 
 export const ASCIImage = (props: Props) => {
@@ -20,7 +21,9 @@ export const ASCIImage = (props: Props) => {
       .join("")
   );
   const [loaded, setLoaded] = useState(false);
-  const gradient = `                            .-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@`;
+  const gradient = ` ${
+    props.darker ? Array(props.darker).fill(" ").join("") : ""
+  } .-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@`;
   useEffect(() => {
     const img = new Image();
     img.crossOrigin = "anonymous";
@@ -53,8 +56,12 @@ export const ASCIImage = (props: Props) => {
 
           image.push(
             (i / 4 + 1) % props.width == 0
-              ? gradient[pixelBrigtnessPercent] + "\n"
-              : gradient[pixelBrigtnessPercent]
+              ? gradient[
+                  Math.floor((gradient.length / 100) * pixelBrigtnessPercent)
+                ] + "\n"
+              : gradient[
+                  Math.floor((gradient.length / 100) * pixelBrigtnessPercent)
+                ]
           );
         }
       }
@@ -70,8 +77,9 @@ export const ASCIImage = (props: Props) => {
       </div>
       <div
         style={{
-          lineHeight: (props.size ? props.size / 1.6 : "0.5") + "vw",
-          fontSize: (props.size ? props.size : "1") + "vw",
+          lineHeight: (props.size ? props.size / 1.6 : "0.5") + "rem",
+          fontSize: (props.size ? props.size : "1") + "rem",
+          aspectRatio: props.width / props.height,
         }}
         className={styles["img-display-wrapper"]}
       >

@@ -38,7 +38,25 @@
   list-style-type: disc;
   list-style-position: inside;
 }
-.markdown > ul > li {
+.markdown > ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+.markdown > table {
+  border-style: solid;
+  border-radius: 0;
+  border-width: 1px;
+  border-color: var(--white);
+}
+.markdown td,
+th {
+  border-style: solid;
+  border-radius: 0;
+  border-width: 1px;
+  border-color: var(--white);
+}
+.markdown > ul,
+ol > li {
   margin-left: 1rem;
 }
 .markdown-wrapper {

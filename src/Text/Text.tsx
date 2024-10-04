@@ -2,10 +2,12 @@ import classNames from "classnames";
 import { HTMLProps, useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import styles from "./Text.module.css";
+import remarkGfm from "remark-gfm";
 
 interface Props extends HTMLProps<HTMLDivElement> {
   animated?: boolean;
   children: string;
+  step?: number;
 }
 
 export const Text = (props: Props) => {
@@ -18,7 +20,7 @@ export const Text = (props: Props) => {
         setAnimationState((state) => {
           state <= -props.children.length && clearInterval(interval);
 
-          return state - 1;
+          return state - (props.step ? props.step : 1);
         });
       }, 1);
     }
@@ -33,7 +35,7 @@ export const Text = (props: Props) => {
       {...props}
       className={classNames(styles["markdown-wrapper"], props.className)}
     >
-      <Markdown className={styles["markdown"]}>
+      <Markdown remarkPlugins={[remarkGfm]} className={styles["markdown"]}>
         {props.animated
           ? props.children
               .split("")
