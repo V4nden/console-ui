@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Loader } from "./Loader";
-
+import { Loader } from "../Loader/Loader";
+import styles from "./ASCIImage.module.css";
 type Props = {
   src: string;
   width: number;
@@ -61,8 +61,8 @@ export const ASCIImage = (props: Props) => {
   }, []);
 
   return (
-    <div className="border border-white/75  text-center m-2 relative">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className={styles["img-block"]}>
+      <div className={styles["img-loading"]}>
         {!loaded && <Loader type="braile" />}
       </div>
       <div
@@ -70,11 +70,11 @@ export const ASCIImage = (props: Props) => {
           lineHeight: (props.size ? props.size / 2 : "0.5") + "vw",
           fontSize: (props.size ? props.size : "1") + "vw",
         }}
-        className="whitespace-pre-wrap w-fit"
+        className={styles["img-display-wrapper"]}
       >
         {image}
       </div>
-      {props.alt && <em className="text-xs text-white/75">{props.alt}</em>}
+      {props.alt && <em className={styles["img-alt"]}>{props.alt}</em>}
     </div>
   );
 };

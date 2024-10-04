@@ -1,0 +1,33 @@
+.markdown {
+  @apply whitespace-pre-wrap flex gap-2 flex-col;
+}
+.markdown > * {
+  @apply p-0 m-0;
+}
+.markdown > p {
+  @apply p-0 m-0;
+}
+.markdown > h1 {
+  @apply font-bold text-2xl;
+}
+.markdown > h2 {
+  @apply font-bold text-xl;
+}
+.markdown > h3 {
+  @apply font-semibold text-lg;
+}
+.markdown > blockquote {
+  @apply border border-white/75 p-1 flex m-0 text-xs;
+}
+.markdown > ul {
+  @apply list-inside list-disc;
+}
+.markdown > ul > li {
+  @apply ml-4;
+}
+.markdown-wrapper {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.75);
+}

@@ -22,9 +22,5 @@ export const Loader = (props: Props) => {
     };
   }, []);
 
-  return (
-    <span>
-      <div>{animation[index]}</div>
-    </span>
-  );
+  return <span>{animation[index]}</span>;
 };

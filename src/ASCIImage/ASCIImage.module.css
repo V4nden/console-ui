@@ -1,0 +1,26 @@
+.img-block {
+  position: relative;
+  margin: 0.5rem;
+  border-width: 1px;
+  text-align: center;
+  border-radius: 0;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.img-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, 50%);
+}
+
+.img-display-wrapper {
+  width: fit-content;
+  white-space: pre-wrap;
+}
+.img-alt {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+}

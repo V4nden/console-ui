@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { ButtonHTMLAttributes } from "react";
+import styles from "./Button.module.css";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -10,10 +11,10 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = (props: Props) => {
-  const styles = {
-    primary: "bg-white text-black font-bold  p-2 rounded-none",
-    secondary: "bg-white/75 text-black/75 rounded-none font-bold p-2",
-    outline: "text-white/75 border-white/75 p-2 border rounded-none",
+  const types = {
+    primary: styles["button-primary"],
+    secondary: styles["button-secondary"],
+    outline: styles["button-outline"],
   };
 
   return (
@@ -22,8 +23,8 @@ export const Button = (props: Props) => {
       className={classNames(
         "m-2",
         props.options && props.options.type
-          ? styles[props.options.type]
-          : styles["primary"],
+          ? types[props.options.type]
+          : types["primary"],
         props.className
       )}
     >

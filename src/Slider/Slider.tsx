@@ -1,4 +1,5 @@
 import React, { createRef, useEffect, useState } from "react";
+import styles from "./Slider.module.css";
 
 type Props = {
   size: number;
@@ -40,7 +41,7 @@ export const Slider = (props: Props) => {
 
   return (
     <div
-      className="cursor-pointer select-none"
+      className={styles["slider"]}
       style={{ fontSize: props.size + "px" }}
       ref={ref}
       onMouseDown={(e) => {

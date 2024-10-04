@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { HTMLProps, useEffect, useState } from "react";
 import Markdown from "react-markdown";
+import styles from "./Text.module.css";
 
 interface Props extends HTMLProps<HTMLDivElement> {
   animated?: boolean;
@@ -30,9 +31,9 @@ export const Text = (props: Props) => {
   return (
     <div
       {...props}
-      className={classNames("p-2 m-2 border border-white/75", props.className)}
+      className={classNames(styles["markdown-wrapper"], props.className)}
     >
-      <Markdown className={"markdown"}>
+      <Markdown className={styles["markdown"]}>
         {props.animated
           ? props.children
               .split("")
