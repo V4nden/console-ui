@@ -68,7 +68,7 @@ export const ASCIImage = (props: Props) => {
       setImage(image.join(""));
       setLoaded(true);
     };
-  }, []);
+  }, [props.src]);
 
   return (
     <div className={classNames(styles["img-block"], indexstyles["border"])}>

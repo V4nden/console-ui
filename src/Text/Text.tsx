@@ -12,11 +12,11 @@ interface Props extends HTMLProps<HTMLDivElement> {
 
 export const Text = (props: Props) => {
   const [animationState, setAnimationState] = useState(-1);
-
   useEffect(() => {
+    setAnimationState(-1);
     let interval: number;
     if (props.animated) {
-      setInterval(() => {
+      interval = setInterval(() => {
         setAnimationState((state) => {
           state <= -props.children.length && clearInterval(interval);
 
@@ -28,7 +28,7 @@ export const Text = (props: Props) => {
     return () => {
       interval && clearInterval(interval);
     };
-  }, []);
+  }, [props.children]);
 
   return (
     <div
