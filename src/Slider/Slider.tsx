@@ -3,62 +3,89 @@ import styles from "./Slider.module.css";
 
 type Props = {
   size: number;
-  width: number;
   min: number;
   max: number;
   current: number;
+  style?: { pointer: string; line: string };
   onChange?: (e: number) => void;
 };
 
 export const Slider = (props: Props) => {
   const ref = createRef<HTMLDivElement>();
   const [display, setDisplay] = useState("");
+  const [capturing, setCapturing] = useState(false);
   const [current, setCurrent] = useState(props.current);
-  const [pressed, setPressed] = useState(false);
-  useEffect(() => {
-    const displayArray = Array(props.width).fill("-");
+  const resize = ({ contentRect }: ResizeObserverEntry) => {
+    const line = Array(
+      Math.floor((contentRect.width / props.size) * 1.67)
+    ).fill(props.style?.line || "-");
 
-    displayArray[
-      Math.floor(
-        (displayArray.length * (current - props.min)) / (props.max - props.min)
-      )
-    ] = "o";
-    setDisplay(displayArray.join(""));
-  }, [current]);
+    let pointIndex = Math.floor(
+      line.length * ((current - props.min) / (props.max - props.min))
+    );
 
-  const setValue = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const calculatedCurrent =
-      props.min +
-      ((props.max - props.min) / 100) *
-        Math.floor(
-          ((e.clientX - e.currentTarget.getBoundingClientRect().x) /
-            e.currentTarget.getBoundingClientRect().width) *
-            100
-        );
-    setCurrent(calculatedCurrent);
-    props.onChange && props.onChange(calculatedCurrent);
+    line[pointIndex == line.length ? line.length - 1 : pointIndex] =
+      props.style?.pointer || "0";
+    setDisplay(line.join(""));
   };
+
+  const handleWindowMouse = (e: MouseEvent) => {
+    if (!capturing) return;
+
+    if (!ref.current) return;
+
+    const boundingClientRect = ref.current.getBoundingClientRect();
+
+    let newCurrent: number;
+
+    if (e.x - boundingClientRect.x < 0) {
+      newCurrent = props.min;
+    } else if (e.x - boundingClientRect.x > boundingClientRect.width) {
+      newCurrent = props.max;
+    } else {
+      newCurrent = Math.round(
+        props.min +
+          (((props.max - props.min) / 100) *
+            Math.floor(
+              ((e.x - boundingClientRect.x) / boundingClientRect.width) * 100
+            ) +
+            1)
+      );
+    }
+
+    setCurrent(newCurrent);
+    props.onChange && props.onChange(newCurrent);
+  };
+  useEffect(() => {
+    window.addEventListener("mousemove", handleWindowMouse);
+    return () => {
+      window.removeEventListener("mousemove", handleWindowMouse);
+    };
+  }, [capturing, ref]);
+
+  useEffect(() => {
+    if (ref.current) {
+      const observer = new ResizeObserver((e) => {
+        resize(e[0]);
+      });
+      observer.observe(ref.current);
+    }
+  }, [ref.current, current]);
 
   return (
     <div
       className={styles["slider"]}
-      style={{ fontSize: props.size + "px" }}
+      style={{ fontSize: props.size + "px", height: props.size * 1.68 }}
       ref={ref}
-      onMouseDown={() => {
-        setPressed(true);
+      onPointerDown={(e) => {
+        (e.target as HTMLDivElement).setPointerCapture(e.pointerId);
+        setCapturing(true);
       }}
-      onMouseUp={() => {
-        setPressed(false);
-      }}
-      onMouseMove={(e) => {
-        pressed && setValue(e);
-      }}
-      onClick={setValue}
-      onMouseLeave={() => {
-        setPressed(false);
+      onPointerUp={() => {
+        setCapturing(false);
       }}
     >
-      {display}
+      <span style={{ position: "absolute" }}>{display}</span>
     </div>
   );
 };
